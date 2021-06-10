@@ -21,12 +21,6 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
-          <script
-            async
-            defer
-            data-domain={process.env.URL}
-            src="https://plausible.io/js/plausible.js"
-          />
         </Head>
         <body>
           <Main />

@@ -3,12 +3,10 @@ import ProgressBar from '@badrap/bar-of-progress'
 import { Provider } from 'next-auth/client'
 import { DefaultSeo } from 'next-seo'
 import Router from 'next/router'
-import { Fragment } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 import type { AppProps } from 'next/app'
-import type { ReactNode } from 'react'
 import 'tailwindcss/tailwind.css'
 import '@/styles/globals.css'
 
@@ -42,14 +40,7 @@ const queryClient = new QueryClient()
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   const canonicalPath = router.pathname === '/' ? '' : router.pathname
   const url = `${DEFAULT_CANONICAL}${canonicalPath}`
-  const Layout =
-    (
-      Component as typeof Component & {
-        layoutProps: {
-          Layout: (props: { children: ReactNode } & unknown) => JSX.Element
-        }
-      }
-    ).layoutProps?.Layout || Fragment
+
   return (
     <>
       <DefaultSeo
@@ -85,9 +76,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
       />
       <QueryClientProvider client={queryClient}>
         <Provider session={pageProps.session}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
           <ReactQueryDevtools initialIsOpen={false} />
         </Provider>
       </QueryClientProvider>
