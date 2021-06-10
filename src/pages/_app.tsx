@@ -1,12 +1,15 @@
+import { Layout } from '@/components'
 import { SEO } from '@/constants/seo-constants'
 import ProgressBar from '@badrap/bar-of-progress'
 import { Provider } from 'next-auth/client'
 import { DefaultSeo } from 'next-seo'
 import Router from 'next/router'
+import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 import type { AppProps } from 'next/app'
+
 import 'tailwindcss/tailwind.css'
 import '@/styles/globals.css'
 
@@ -76,7 +79,9 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
       />
       <QueryClientProvider client={queryClient}>
         <Provider session={pageProps.session}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
           <ReactQueryDevtools initialIsOpen={false} />
         </Provider>
       </QueryClientProvider>
