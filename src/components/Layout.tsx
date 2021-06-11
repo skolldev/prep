@@ -30,7 +30,7 @@ const userNavigation = [
 
 export function Layout(props: withChildren): JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [session, loading] = useSession()
+  const [session] = useSession()
 
   return (
     <div className="h-screen bg-gray-50 flex overflow-hidden">
