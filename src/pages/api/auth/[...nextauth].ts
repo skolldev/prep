@@ -1,8 +1,10 @@
-import Fauna from '@/adapters'
-import { env } from '@/constants/env'
-import { getFaunaClient } from '@/utils'
-import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import { env } from "@/constants/env";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+
+const prisma = new PrismaClient();
 
 export default NextAuth({
   providers: [
@@ -12,15 +14,5 @@ export default NextAuth({
     }),
   ],
   secret: env.SECRET,
-  adapter: Fauna.Adapter({ faunaClient: getFaunaClient() }),
-  callbacks: {
-    session: async (session, user) => {
-      return Promise.resolve({
-        ...session,
-        user: {
-          ...user,
-        },
-      })
-    },
-  },
-})
+  adapter: PrismaAdapter(prisma),
+});
