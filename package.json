@@ -15,25 +15,22 @@
     "format": "prettier --write --list-different --ignore-path .gitignore .",
     "validate": "npm-run-all --parallel check-types lint format",
     "validate:build": "npm-run-all --parallel validate build",
-    "prepare": "husky install",
-    "setup-db": "npx fauna-schema-migrate apply all",
-    "setup-docker-db": "cross-env FAUNA_ADMIN_KEY=secret FAUNADB_DOMAIN=localhost FAUNADB_SCHEME=http FAUNADB_PORT=8443 npm run setup-db",
-    "clear-db": "node ./src/adapters/fauna/clear-db.mjs",
-    "clear-docker-db": "cross-env USE_FAUNA_DOCKER=true npm run clear-db"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@badrap/bar-of-progress": "0.1.2",
     "@headlessui/react": "1.2.0",
     "@heroicons/react": "1.0.1",
+    "@next-auth/prisma-adapter": "^0.4.4-canary.64",
+    "@prisma/client": "^2.24.1",
     "classnames": "^2.3.1",
-    "faunadb": "4.3.0",
     "next": "10.2.3",
     "next-auth": "3.26.1",
     "next-seo": "4.24.0",
+    "prisma": "^2.24.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-query": "3.16.1",
-    "slugify": "1.5.3"
+    "react-query": "3.16.1"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
@@ -47,7 +44,6 @@
     "cross-env": "7.0.3",
     "eslint": "7.26.0",
     "eslint-config-galex": "2.16.1",
-    "fauna-schema-migrate": "2.1.2",
     "husky": ">=6",
     "lint-staged": ">=11.0.0",
     "npm-run-all": "4.1.5",
