@@ -1,8 +1,9 @@
 module.exports = {
-  extends: 'galex',
+  extends: "galex",
   rules: {
-    'new-cap': 'off',
-    'jsx-a11y/control-has-associated-label': 'off',
-    'no-void': ['error', { allowAsStatement: true }],
+    "new-cap": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "no-void": ["error", { allowAsStatement: true }],
+    "@typescript-eslint/consistent-type-definitions": "off",
   },
-}
+};

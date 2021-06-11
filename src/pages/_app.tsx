@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import type { AppProps } from "next/app";
-import type { withChildren } from "src/interfaces/common-props";
+import type { WithChildren } from "src/interfaces/common-props";
 
 import "tailwindcss/tailwind.css";
 import "@/styles/globals.css";
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   const canonicalPath = router.pathname === "/" ? "" : router.pathname;
   const url = `${DEFAULT_CANONICAL}${canonicalPath}`;
 
-  function Auth({ children }: withChildren) {
+  function Auth({ children }: WithChildren) {
     const [session, loading] = useSession();
     const isUser = !!session?.user;
     React.useEffect(() => {
