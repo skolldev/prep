@@ -64,8 +64,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
     return <div>Loading...</div>;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const componentHasAuth = (Component as any).auth;
+  const { auth, actions, pageTitle } = Component as any;
 
   return (
     <>
@@ -102,9 +101,9 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
       />
       <QueryClientProvider client={queryClient}>
         <Provider session={pageProps.session}>
-          {componentHasAuth ? (
+          {auth ? (
             <Auth>
-              <Layout>
+              <Layout actions={actions} pageTitle={pageTitle}>
                 <Component {...pageProps} />
               </Layout>
             </Auth>

@@ -56,3 +56,12 @@ model VerificationRequest {
 
   @@unique([identifier, token])
 }
+
+model Food {
+  id       Int    @id @default(autoincrement())
+  name     String
+  protein  Int?
+  carbs    Int?
+  fats     Int?
+  calories Int?
+}

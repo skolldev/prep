@@ -54,7 +54,7 @@ A Next.js starter kit template with React 17 + Typescript + Tailwind CSS 2 + Rea
 
 To run this project, you will need to add the following environment variables to your `.env.local` file
 
-- `NEXTAUTH_URL`
+- `NEXT_PUBLIC_URL`
   - This is the your application URL. Locally, you can set this to `http://localhost:3000`
 - `SECRET`
   - Set this to any randomly generated string

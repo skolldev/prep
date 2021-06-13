@@ -25,7 +25,12 @@ type IRoute = {
 };
 const userNavigation = [{ name: "Sign out", action: () => signOut() }];
 
-export function Layout(props: WithChildren): JSX.Element {
+type LayoutProps = WithChildren & {
+  actions?: React.ReactNode[];
+  pageTitle: string;
+};
+
+export function Layout(props: LayoutProps): JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [session] = useSession();
   const router = useRouter();
@@ -241,10 +246,16 @@ export function Layout(props: WithChildren): JSX.Element {
             </div>
           </div>
         </header>
-
-        <div className="flex-1 flex items-stretch overflow-hidden">
-          <main className="flex-1 overflow-y-auto">{props.children}</main>
-        </div>
+        <header className="bg-white shadow">
+          <div className="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold text-gray-900">
+              {props.pageTitle}
+            </h1>
+          </div>
+        </header>
+        <main className="overflow-y-auto flex-1">
+          <div className="mx-auto py-6 sm:px-6 lg:px-8">{props.children}</div>
+        </main>
       </div>
     </div>
   );

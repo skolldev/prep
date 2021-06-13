@@ -1,10 +1,8 @@
 import { env } from "@/constants/env";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-
-const prisma = new PrismaClient();
+import prisma from "src/lib/db";
 
 export default NextAuth({
   providers: [
