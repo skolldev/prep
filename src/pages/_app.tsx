@@ -7,12 +7,14 @@ import Router from "next/router";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { SlideoverProvider } from "src/contexts/slideover-context";
 
 import type { AppProps } from "next/app";
 import type { WithChildren } from "src/interfaces/common-props";
 
 import "tailwindcss/tailwind.css";
 import "@/styles/globals.css";
+import Slideover from "@/components/Slideover";
 
 const progress = new ProgressBar({
   size: 2,
@@ -103,9 +105,12 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         <Provider session={pageProps.session}>
           {auth ? (
             <Auth>
-              <Layout actions={actions} pageTitle={pageTitle}>
-                <Component {...pageProps} />
-              </Layout>
+              <SlideoverProvider>
+                <Layout actions={actions} pageTitle={pageTitle}>
+                  <Component {...pageProps} />
+                </Layout>
+                <Slideover />
+              </SlideoverProvider>
             </Auth>
           ) : (
             <Component {...pageProps} />

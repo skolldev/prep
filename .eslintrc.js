@@ -9,5 +9,6 @@ module.exports = {
     "@typescript-eslint/restrict-template-expressions": "off",
     "no-else-return": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "unicorn/no-useless-undefined": "off",
   },
 };
