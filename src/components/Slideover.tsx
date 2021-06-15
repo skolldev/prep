@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { useSlideover } from "src/contexts/slideover-context";
 
 export default function Slideover(): JSX.Element {
@@ -48,12 +48,10 @@ export default function Slideover(): JSX.Element {
                       </div>
                     </div>
                     <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                      {/* Replace with your content */}
                       <div
                         className="h-full border-2 border-dashed border-gray-200"
                         aria-hidden="true"
                       />
-                      {/* /End replace */}
                     </div>
                   </div>
                   <div className="flex-shrink-0 px-4 py-4 flex justify-end">
