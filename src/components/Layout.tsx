@@ -13,6 +13,7 @@ import classnames from "classnames";
 import { signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
+import { usePageActions } from "src/contexts/page-actions-context";
 
 import { A } from ".";
 
@@ -26,7 +27,6 @@ type IRoute = {
 const userNavigation = [{ name: "Sign out", action: () => signOut() }];
 
 type LayoutProps = WithChildren & {
-  actions?: React.ReactNode[];
   pageTitle: string;
 };
 
@@ -34,6 +34,7 @@ export function Layout(props: LayoutProps): JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [session] = useSession();
   const router = useRouter();
+  const { actions } = usePageActions();
 
   const isCurrentRoute = (route: IRoute): boolean => {
     return router.asPath === route.href;
@@ -255,7 +256,7 @@ export function Layout(props: LayoutProps): JSX.Element {
                 </h2>
               </div>
               <div className="mt-4 flex md:mt-0 md:ml-4">
-                {props.actions?.map((action) => action)}
+                {actions.map((action) => action)}
               </div>
             </div>
           </div>

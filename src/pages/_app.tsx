@@ -1,4 +1,5 @@
 import { Layout } from "@/components";
+import Slideover from "@/components/Slideover";
 import { SEO } from "@/constants/seo-constants";
 import ProgressBar from "@badrap/bar-of-progress";
 import { Provider, signIn, useSession } from "next-auth/client";
@@ -7,6 +8,7 @@ import Router from "next/router";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { PageActionsProvider } from "src/contexts/page-actions-context";
 import { SlideoverProvider } from "src/contexts/slideover-context";
 
 import type { AppProps } from "next/app";
@@ -14,7 +16,6 @@ import type { WithChildren } from "src/interfaces/common-props";
 
 import "tailwindcss/tailwind.css";
 import "@/styles/globals.css";
-import Slideover from "@/components/Slideover";
 
 const progress = new ProgressBar({
   size: 2,
@@ -66,7 +67,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
     return <div>Loading...</div>;
   }
 
-  const { auth, actions, pageTitle } = Component as any;
+  const { auth, pageTitle } = Component as any;
 
   return (
     <>
@@ -106,9 +107,11 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
           {auth ? (
             <Auth>
               <SlideoverProvider>
-                <Layout actions={actions} pageTitle={pageTitle}>
-                  <Component {...pageProps} />
-                </Layout>
+                <PageActionsProvider>
+                  <Layout pageTitle={pageTitle}>
+                    <Component {...pageProps} />
+                  </Layout>
+                </PageActionsProvider>
                 <Slideover />
               </SlideoverProvider>
             </Auth>

@@ -5,3 +5,4 @@ export default function Home(): JSX.Element {
 }
 
 Home.auth = true;
+Home.pageTitle = "Dashboard";

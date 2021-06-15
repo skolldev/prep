@@ -11,7 +11,7 @@ export default function Slideover(): JSX.Element {
       <Dialog
         as="div"
         static
-        className="fixed inset-0 overflow-hidden"
+        className="fixed inset-0 overflow-hidden z-50"
         open={open}
         onClose={setOpen}>
         <div className="absolute inset-0 overflow-hidden">
